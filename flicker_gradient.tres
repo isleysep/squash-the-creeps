@@ -1,0 +1,6 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://bjcv387ni36b2"]
+
+[ext_resource type="Gradient" uid="uid://06bvwkfa6t2r" path="res://pink_transparent.tres" id="1_0jvx6"]
+
+[resource]
+gradient = ExtResource("1_0jvx6")

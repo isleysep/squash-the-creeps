@@ -1,0 +1,245 @@
+[gd_scene load_steps=24 format=3 uid="uid://bekk4p3ych8kn"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_3efu0"]
+[ext_resource type="PackedScene" uid="uid://bes6dk4kc8nna" path="res://art/mob.glb" id="2_r6whr"]
+[ext_resource type="PackedScene" uid="uid://dfqjuh4o0xus7" path="res://mobwireframe.tscn" id="3_ahbt6"]
+[ext_resource type="Material" uid="uid://nb6uvthsfapa" path="res://player_outlined.tres" id="3_d7jo1"]
+[ext_resource type="Curve" uid="uid://cgx60koqgm6o0" path="res://flicker.tres" id="4_bjeid"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vl7oj"]
+size = Vector3(2.68555, 0.634521, 3.68359)
+
+[sub_resource type="Animation" id="Animation_owxba"]
+resource_name = "float"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.166667, 0.566667, 1),
+"transitions": PackedFloat32Array(0.420448, 2.21914, 0.63728),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.65, 0), Vector3(0, 0.25, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Character:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667, 0.433333, 1),
+"transitions": PackedFloat32Array(0.420448, 2.07053, 4.75683),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.139626, 0, 0), Vector3(-0.15708, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fq71q"]
+_data = {
+"float": SubResource("Animation_owxba")
+}
+
+[sub_resource type="Gradient" id="Gradient_psuie"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
+colors = PackedColorArray(0.133333, 0.211765, 0.435294, 1, 1, 1, 1, 0.458824, 0.133333, 0.211765, 0.435294, 1, 1, 1, 1, 0.458824, 0.133333, 0.211765, 0.435294, 1, 1, 1, 1, 0.458824, 0.133333, 0.211765, 0.435294, 1, 1, 1, 1, 0.458824, 0.133333, 0.211765, 0.435294, 1, 1, 1, 1, 0.458824, 1, 0.9375, 0.85, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i7fki"]
+gradient = SubResource("Gradient_psuie")
+
+[sub_resource type="Curve" id="Curve_u0kim"]
+max_value = 10.0
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 0), 0.0, 0.0, 0, 0, Vector2(0.10001, 10), 0.0, 0.0, 0, 0, Vector2(0.2, 10), 0.0, 0.0, 0, 0, Vector2(0.20001, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 0), 0.0, 0.0, 0, 0, Vector2(0.30001, 10), 0.0, 0.0, 0, 0, Vector2(0.4, 10), 0.0, 0.0, 0, 0, Vector2(0.40001, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(0.50001, 10), 0.0, 0.0, 0, 0, Vector2(0.6, 10), 0.0, 0.0, 0, 0, Vector2(0.60001, 0), 0.0, 0.0, 0, 0, Vector2(0.7, 0), 0.0, 0.0, 0, 0, Vector2(0.70001, 10), 0.0, 0.0, 0, 0, Vector2(0.8, 10), 0.0, 0.0, 0, 0, Vector2(0.80001, 0), 0.0, 0.0, 0, 0, Vector2(0.9, 0), 0.0, 0.0, 0, 0, Vector2(0.90001, 10), 0.0, 0.0, 0, 0]
+point_count = 20
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_5unc8"]
+curve = SubResource("Curve_u0kim")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i28mk"]
+lifetime_randomness = 0.82
+particle_flag_rotate_y = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(20.67, 17.67, 68.225)
+spread = 180.0
+flatness = 0.771
+initial_velocity_min = 36.74
+initial_velocity_max = 43.73
+gravity = Vector3(0, -37.71, 0)
+scale_min = 0.6
+color_ramp = SubResource("GradientTexture1D_i7fki")
+emission_curve = SubResource("CurveTexture_5unc8")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+collision_mode = 1
+collision_friction = 0.77
+collision_bounce = 1.0
+collision_use_scale = true
+sub_emitter_keep_velocity = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1sjm"]
+vertex_color_use_as_albedo = true
+emission = Color(0.133333, 0.219608, 0.458824, 1)
+emission_energy_multiplier = 16.0
+emission_operator = 1
+rim = 0.3
+rim_tint = 0.78
+anisotropy = 0.35
+ao_light_affect = 0.85
+backlight = Color(0.739125, 0.2025, 0.81, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow_amount = 16.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_7inb4"]
+material = SubResource("StandardMaterial3D_q1sjm")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="CurveTexture" id="CurveTexture_tsblu"]
+curve = ExtResource("4_bjeid")
+
+[sub_resource type="Curve" id="Curve_ukub6"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_oc3k2"]
+curve = SubResource("Curve_ukub6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2fj5d"]
+lifetime_randomness = 0.82
+particle_flag_rotate_y = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(20.67, 17.67, 68.225)
+spread = 180.0
+flatness = 0.771
+initial_velocity_min = 36.74
+initial_velocity_max = 43.73
+gravity = Vector3(0, -37.71, 0)
+scale_min = 0.6
+color = Color(0.921569, 0.168627, 0.239216, 1)
+emission_curve = SubResource("CurveTexture_tsblu")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+hue_variation_curve = SubResource("CurveTexture_oc3k2")
+collision_mode = 1
+collision_friction = 0.77
+collision_bounce = 1.0
+collision_use_scale = true
+sub_emitter_keep_velocity = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_v25e7"]
+curve = ExtResource("4_bjeid")
+
+[sub_resource type="Curve" id="Curve_g0670"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, -1), 0.0, 0.0, 0, 0, Vector2(0.99999, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_p6tdb"]
+curve = SubResource("Curve_g0670")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ft0pr"]
+lifetime_randomness = 0.82
+particle_flag_rotate_y = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(20.67, 17.67, 68.225)
+spread = 180.0
+flatness = 0.771
+initial_velocity_min = 36.74
+initial_velocity_max = 43.73
+gravity = Vector3(0, -37.71, 0)
+scale_min = 0.6
+color = Color(0.188235, 0.196078, 0.207843, 1)
+emission_curve = SubResource("CurveTexture_v25e7")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+hue_variation_curve = SubResource("CurveTexture_p6tdb")
+collision_mode = 1
+collision_friction = 0.77
+collision_bounce = 1.0
+collision_use_scale = true
+sub_emitter_keep_velocity = true
+
+[node name="Mob" type="CharacterBody3D" groups=["mob"]]
+collision_layer = 2
+collision_mask = 4
+wall_min_slide_angle = 0.0174533
+floor_stop_on_slope = false
+floor_max_angle = 0.174533
+safe_margin = 0.1
+script = ExtResource("1_3efu0")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" parent="Pivot" instance=ExtResource("2_r6whr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="Sphere" parent="Pivot/Character" index="0"]
+material_overlay = ExtResource("3_d7jo1")
+
+[node name="mob" parent="Pivot" instance=ExtResource("3_ahbt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0385132, 0.17244, 0.268936)
+shape = SubResource("BoxShape3D_vl7oj")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.259945)
+aabb = AABB(-1.15871, -0.891766, -1.66703, 2.31742, 1.78353, 3.33407)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fq71q")
+}
+autoplay = "float"
+
+[node name="BlueParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 0.95
+randomness = 0.94
+collision_base_size = 0.5
+process_material = SubResource("ParticleProcessMaterial_i28mk")
+draw_passes = 2
+draw_pass_1 = SubResource("QuadMesh_7inb4")
+draw_pass_2 = null
+
+[node name="RedParticles" type="GPUParticles3D" parent="."]
+visible = false
+emitting = false
+amount = 6
+one_shot = true
+explosiveness = 0.95
+randomness = 0.94
+collision_base_size = 0.5
+process_material = SubResource("ParticleProcessMaterial_2fj5d")
+draw_pass_1 = SubResource("QuadMesh_7inb4")
+
+[node name="BlackParticles" type="GPUParticles3D" parent="."]
+visible = false
+emitting = false
+amount = 2
+one_shot = true
+explosiveness = 0.95
+randomness = 0.94
+collision_base_size = 0.5
+process_material = SubResource("ParticleProcessMaterial_ft0pr")
+draw_pass_1 = SubResource("QuadMesh_7inb4")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+
+[editable path="Pivot/Character"]

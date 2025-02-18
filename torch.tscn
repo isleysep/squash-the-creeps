@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuo47hb4ghj16"]
+
+[ext_resource type="Script" path="res://torch.gd" id="1_51r5s"]
+[ext_resource type="PackedScene" uid="uid://djs1ilwmehh7w" path="res://torch_particles.tscn" id="2_nhb7g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ws4uh"]
+size = Vector3(0.25, 2, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yd6s7"]
+size = Vector3(0.25, 2, 0.25)
+
+[node name="Torch" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0126, 0)
+script = ExtResource("1_51r5s")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("BoxMesh_ws4uh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yd6s7")
+
+[node name="TorchParticles" parent="." instance=ExtResource("2_nhb7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12227, 0.000153303)

@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://djs1ilwmehh7w"]
+
+[sub_resource type="Gradient" id="Gradient_rv4rs"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xojay"]
+gradient = SubResource("Gradient_rv4rs")
+
+[sub_resource type="Curve" id="Curve_bvar1"]
+max_value = 50.0
+_data = [Vector2(0, 25), 0.0, -49.3023, 0, 0, Vector2(0.129717, 15.6977), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ybxjw"]
+curve = SubResource("Curve_bvar1")
+
+[sub_resource type="Curve" id="Curve_8vmco"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.232558), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j5q46"]
+curve = SubResource("Curve_8vmco")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vqa63"]
+lifetime_randomness = 0.82
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.25
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 62.555, 30.435)
+spread = 69.292
+flatness = 0.585
+initial_velocity_max = 2.0
+gravity = Vector3(0, 96.415, 0)
+scale_min = 0.8
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_j5q46")
+color = Color(0.685086, 0.499969, 0.302741, 0.85098)
+color_ramp = SubResource("GradientTexture1D_xojay")
+emission_curve = SubResource("CurveTexture_ybxjw")
+hue_variation_min = -0.01
+hue_variation_max = 0.02
+collision_mode = 1
+collision_friction = 0.77
+collision_bounce = 1.0
+collision_use_scale = true
+sub_emitter_keep_velocity = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7m0p"]
+vertex_color_use_as_albedo = true
+emission = Color(0.133333, 0.219608, 0.458824, 1)
+emission_energy_multiplier = 16.0
+emission_operator = 1
+rim = 0.3
+rim_tint = 0.78
+anisotropy = 0.35
+ao_light_affect = 0.85
+backlight = Color(0.739125, 0.2025, 0.81, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow_amount = 16.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_nsr7v"]
+material = SubResource("StandardMaterial3D_n7m0p")
+size = Vector2(0.5, 0.5)
+
+[node name="TorchParticles" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000153303)
+amount = 40
+lifetime = 0.25
+randomness = 0.94
+collision_base_size = 0.5
+visibility_aabb = AABB(0, 0, 0, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_vqa63")
+draw_passes = 2
+draw_pass_1 = SubResource("QuadMesh_nsr7v")
+draw_pass_2 = null
