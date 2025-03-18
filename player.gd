@@ -102,18 +102,24 @@ func _physics_process(delta):
 			twirl_available = false
 			twirl.emit(false)
 			twirl_counter = 0
+			var mat = $Pivot/Character/Sphere_001.get_surface_override_material(1)
+			mat.albedo_color = Color("ff6430")
+			$Pivot/Character/Sphere_001.set_surface_override_material(1, mat)
 	
 	# Jumping.
 	if is_on_floor():
-		if combo_count > 20:
-			die()
 		if not airborne:
+			if combo_count > 0:
+				die()
 			combo_count = 0
 			ComboCount.reset_combo()
-			twirl_available = true
+			twirl_available = false
 			twirl.emit(true)
 			twirl_counter = 0
 			#$Pivot/Character/FastTrailParticles.emitting = false
+			var mat = $Pivot/Character/Sphere_001.get_surface_override_material(1)
+			mat.albedo_color = Color("ff6430")
+			$Pivot/Character/Sphere_001.set_surface_override_material(1, mat)
 		airborne = false
 		#combo_count = 0
 		combo.emit(0)
@@ -143,6 +149,9 @@ func _physics_process(delta):
 				if !twirl_available:
 					twirl_counter += 1
 				if twirl_counter > 2:
+					var mat = $Pivot/Character/Sphere_001.get_surface_override_material(1)
+					mat.albedo_color = Color("fb67a2")
+					$Pivot/Character/Sphere_001.set_surface_override_material(1, mat)
 					twirl_available = true
 					twirl.emit(true)
 				mob.squash()
@@ -151,8 +160,11 @@ func _physics_process(delta):
 				if mob.get_real_velocity().y > 10:
 					target_velocity.y += mob.get_real_velocity().y*5
 					stunt.emit()
-					twirl_available = true
-					twirl.emit(true)
+					#var mat = $Pivot/Character/Sphere_001.get_surface_override_material(1)
+					#mat.albedo_color = Color("fb67a2")
+					#$Pivot/Character/Sphere_001.set_surface_override_material(1, mat)
+					#twirl_available = true
+					#twirl.emit(true)
 				combo.emit(combo_count)
 				airborne = true
 				# $PinkParticles.emitting = true
@@ -177,6 +189,8 @@ func _physics_process(delta):
 		$Pivot/Character/FastTrailParticles.emitting = true
 	else:
 		$Pivot/Character/FastTrailParticles.emitting = false
+	if $AnimationPlayer.current_animation == "twirl":
+		$Pivot/Character/FastTrailParticles.emitting = true
 	$Pivot.rotation.x = PI / 6 * clamp(velocity.y, -50, 50) / jump_impulse
 	height.emit(position.y)
 
@@ -194,6 +208,10 @@ func pick_color():
 	var orange = Color(0.8117, 0.4153, 0.2306, 0.851)
 	var yellow = Color(0.7559, 0.4633, 0.1603, 0.851)
 	var blue = Color(0.4164, 0.5444, 0.76, 0.851)
+	var purp = Color("fb67a2")
+	if $AnimationPlayer.current_animation == "twirl":
+		material.set("color", purp)
+		return
 
 	# Define speed thresholds (adjust as needed)
 	var speed_min = 0.0

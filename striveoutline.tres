@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bcwpu4cralhdp"]
+
+[ext_resource type="FontFile" uid="uid://pgs7pq8fybjl" path="res://fonts/Impact - Strive.otf" id="1_21ehe"]
+
+[resource]
+font = ExtResource("1_21ehe")
+font_size = 620
+font_color = Color(1, 1, 1, 0.305882)
+shadow_size = 81
+shadow_color = Color(0, 0, 0, 0.337255)

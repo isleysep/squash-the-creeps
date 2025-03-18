@@ -59,9 +59,12 @@ func _on_player_height(num: Variant) -> void:
 	#if last_height - num < 0.1 and PhaseTrack.get_phase() == 2:
 		#if $Player/Pivot/Character.rotation.z - $Silhouette/Pivot/Character.rotation.z < 0.1:
 			#$AudioStreamPlayer3D.play()
-	if 30.0 > num or last_height > num + 0.5:
+	if 30.0 > num or last_height > num + 0.5 or $Player/AnimationPlayer.current_animation == "twirl":
 		# letterbox out
 		tween.tween_method(camera_fade, $SubViewportContainer.material.get_shader_parameter("squishedness"), 0, 0.25)
+		$UserInterface/HeightLabel.visible = false
+		$UserInterface/ScoreLabel.visible = true
+		$UserInterface/ComboLabel.visible = true
 		$CameraPivot/Camera3D.current = true
 		#$Silhouette.visible = false
 		PhaseTrack.set_phase(1)
@@ -72,10 +75,9 @@ func _on_player_height(num: Variant) -> void:
 		$JumpCamera.current = true
 		# if entering phase 2, set random rotation for silhouette
 		if PhaseTrack.get_phase() == 1:
-			#$Silhouette/Pivot/Character.rotate_object_local(Vector3(1, 0, 0), randf())
-			#$Silhouette/Pivot/Character.rotate_object_local(Vector3(0, 1, 0), randf())
-			#$Silhouette/Pivot/Character.rotate_object_local(Vector3(0, 0, 1), randf())
-			silhouette_rot.emit($Silhouette/Pivot/Character.rotation)
+			$UserInterface/HeightLabel.visible = true
+			$UserInterface/ScoreLabel.visible = false
+			$UserInterface/ComboLabel.visible = false
 		PhaseTrack.set_phase(2)
 	last_height = num
 

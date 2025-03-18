@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cj73cy7spmqbr"]
+
+[ext_resource type="FontFile" uid="uid://pgs7pq8fybjl" path="res://fonts/Impact - Strive.otf" id="1_3fydm"]
+
+[resource]
+font = ExtResource("1_3fydm")
+font_size = 86

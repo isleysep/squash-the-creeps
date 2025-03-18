@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://deohv5cn8ol65"]
 
-[ext_resource type="Script" path="res://addons/3D Outline/Toggle Outline.gd" id="1"]
+[ext_resource type="Script" uid="uid://dqn45orvjv7t" path="res://addons/3D Outline/Toggle Outline.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://jf46s6504r1r" path="res://addons/3D Outline/Test/Outlined Mesh.tscn" id="2"]
 
 [sub_resource type="Environment" id="1"]

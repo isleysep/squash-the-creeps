@@ -4,6 +4,7 @@ render_mode unshaded, cull_back, depth_draw_always;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture;
 uniform float outline_width = 2.0;
+uniform vec3 color = vec3(0.983, 0.405, 0.636);
 
 void vertex() {
     // Expand vertices outward to create an outline effect
@@ -31,7 +32,7 @@ void fragment() {
     }
 
     if (is_edge) {
-        ALBEDO = vec3(0.0, 0.0, 0.0); // Force black outline
+        ALBEDO = color; // Force black outline
         ALPHA = 1.0;
     } else {
         ALBEDO = pixel_color.rgb; // Keep original color

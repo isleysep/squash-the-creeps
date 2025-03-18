@@ -8,7 +8,7 @@ metadata/_snap_enabled = true
 gradient = SubResource("Gradient_rv4rs")
 
 [sub_resource type="Curve" id="Curve_bvar1"]
-max_value = 50.0
+_limits = [0.0, 50.0, 0.0, 1.0]
 _data = [Vector2(0, 25), 0.0, -49.3023, 0, 0, Vector2(0.129717, 15.6977), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 

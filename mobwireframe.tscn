@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://dfqjuh4o0xus7"]
 
 [ext_resource type="PackedScene" uid="uid://bes6dk4kc8nna" path="res://art/mob.glb" id="1_u0n7h"]
-[ext_resource type="Shader" path="res://eye.gdshader" id="2_e05we"]
+[ext_resource type="Shader" uid="uid://d2lj1lwl05ks0" path="res://eye.gdshader" id="2_e05we"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i3oig"]
 render_priority = 0

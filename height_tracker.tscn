@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8ow73x32g5fk"]
 
-[ext_resource type="Script" path="res://height_tracker.gd" id="1_ia06w"]
+[ext_resource type="Script" uid="uid://g0li2slj17vx" path="res://height_tracker.gd" id="1_ia06w"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_qpqqy"]
 

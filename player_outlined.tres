@@ -1,11 +1,12 @@
 [gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://nb6uvthsfapa"]
 
-[ext_resource type="Shader" path="res://outline_chatgpt.gdshader" id="1_wfs6g"]
+[ext_resource type="Shader" uid="uid://5ihyjpjy40lg" path="res://outline_chatgpt.gdshader" id="1_wfs6g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pdm83"]
 render_priority = 0
 shader = ExtResource("1_wfs6g")
 shader_parameter/outline_width = 2.0
+shader_parameter/color = Vector3(0, 0, 0)
 
 [resource]
 render_priority = 3

@@ -1,6 +1,6 @@
-[gd_scene load_steps=39 format=4 uid="uid://c31c4jpianrwe"]
+[gd_scene load_steps=32 format=4 uid="uid://c31c4jpianrwe"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_xqr5l"]
+[ext_resource type="Script" uid="uid://c5nfibumnqhb8" path="res://player.gd" id="1_xqr5l"]
 [ext_resource type="Material" uid="uid://nb6uvthsfapa" path="res://player_outlined.tres" id="2_cwk28"]
 [ext_resource type="Texture2D" uid="uid://bhfeiqbh5iodg" path="res://red_flame_gradient.tres" id="3_8sgk5"]
 
@@ -107,15 +107,23 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hycvb")
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i3pqv"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2uxbq"]
 albedo_color = Color(1, 0.3925, 0.19, 1)
-emission = Color(1, 0.294118, 0.980392, 1)
-emission_energy_multiplier = 0.66
+emission = Color(0.55, 0.011, 0.532033, 1)
+emission_energy_multiplier = 0.8
+rim = 0.15
+rim_tint = 0.82
+anisotropy = 0.45
+anisotropy_flowmap = SubResource("NoiseTexture2D_i3pqv")
+subsurf_scatter_strength = 0.56
+backlight = Color(0.54902, 0.0117647, 0.533333, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ab073"]
 
 [sub_resource type="Curve" id="Curve_5fw0h"]
-max_value = 10.0
+_limits = [0.0, 10.0, 0.0, 1.0]
 _data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
 point_count = 1
 
@@ -143,7 +151,7 @@ gravity = Vector3(0, -37.71, 0)
 scale_min = 0.8
 scale_max = 1.2
 scale_curve = SubResource("CurveTexture_mi583")
-color = Color(0.326397, 0.570736, 0.737582, 0.85098)
+color = Color(0.983354, 0.405054, 0.63615, 1)
 color_ramp = ExtResource("3_8sgk5")
 emission_curve = SubResource("CurveTexture_xemvc")
 hue_variation_min = -0.01
@@ -269,68 +277,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vclut"]
 _data = {
-"RESET": SubResource("Animation_ikpbm"),
-"flip": SubResource("Animation_of1kn"),
-"float": SubResource("Animation_qunoe"),
-"twirl": SubResource("Animation_e35wk")
+&"RESET": SubResource("Animation_ikpbm"),
+&"flip": SubResource("Animation_of1kn"),
+&"float": SubResource("Animation_qunoe"),
+&"twirl": SubResource("Animation_e35wk")
 }
-
-[sub_resource type="Curve" id="Curve_21wai"]
-min_value = -1.0
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, -1), 0.0, 0.0, 0, 0, Vector2(0.99999, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_oc3k2"]
-curve = SubResource("Curve_21wai")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fs30h"]
-particle_flag_rotate_y = true
-angle_min = -720.0
-angle_max = 1.07288e-05
-direction = Vector3(10, -1000, 10)
-spread = 180.0
-flatness = 0.771
-gravity = Vector3(0, -37.71, 0)
-color = Color(0.188235, 0.196078, 0.207843, 1)
-hue_variation_min = -2.23517e-08
-hue_variation_max = -2.23517e-08
-hue_variation_curve = SubResource("CurveTexture_oc3k2")
-collision_mode = 1
-collision_friction = 0.77
-collision_bounce = 1.0
-collision_use_scale = true
-
-[sub_resource type="Gradient" id="Gradient_tvwbj"]
-offsets = PackedFloat32Array(0, 0.77193, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_tnjh6"]
-noise_type = 3
-seed = 435
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fy10t"]
-color_ramp = SubResource("Gradient_tvwbj")
-noise = SubResource("FastNoiseLite_tnjh6")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxm3p"]
-transparency = 1
-albedo_color = Color(0.96, 0.048, 0.732, 1)
-emission_enabled = true
-rim_enabled = true
-subsurf_scatter_strength = 0.51
-subsurf_scatter_skin_mode = true
-backlight = Color(0.960784, 0.0470588, 0.733333, 1)
-refraction_scale = -1.0
-detail_enabled = true
-detail_mask = SubResource("NoiseTexture2D_fy10t")
-detail_blend_mode = 1
-grow_amount = 16.0
-use_particle_trails = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_2iqyb"]
-material = SubResource("StandardMaterial3D_rxm3p")
-section_length = 10.0
-section_segments = 5
 
 [sub_resource type="Gradient" id="Gradient_psuie"]
 interpolation_mode = 1
@@ -342,7 +293,7 @@ metadata/_snap_enabled = true
 gradient = SubResource("Gradient_psuie")
 
 [sub_resource type="Curve" id="Curve_mwxtl"]
-max_value = 10.0
+_limits = [0.0, 10.0, 0.0, 1.0]
 _data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 0), 0.0, 0.0, 0, 0, Vector2(0.10001, 10), 0.0, 0.0, 0, 0, Vector2(0.2, 10), 0.0, 0.0, 0, 0, Vector2(0.20001, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 0), 0.0, 0.0, 0, 0, Vector2(0.30001, 10), 0.0, 0.0, 0, 0, Vector2(0.4, 10), 0.0, 0.0, 0, 0, Vector2(0.40001, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(0.50001, 10), 0.0, 0.0, 0, 0, Vector2(0.6, 10), 0.0, 0.0, 0, 0, Vector2(0.60001, 0), 0.0, 0.0, 0, 0, Vector2(0.7, 0), 0.0, 0.0, 0, 0, Vector2(0.70001, 10), 0.0, 0.0, 0, 0, Vector2(0.8, 10), 0.0, 0.0, 0, 0, Vector2(0.80001, 0), 0.0, 0.0, 0, 0, Vector2(0.9, 0), 0.0, 0.0, 0, 0, Vector2(0.90001, 10), 0.0, 0.0, 0, 0]
 point_count = 20
 metadata/_snap_enabled = true
@@ -419,20 +370,9 @@ shape = SubResource("CylinderShape3D_134hg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_vclut")
+&"": SubResource("AnimationLibrary_vclut")
 }
 autoplay = "float"
-
-[node name="PinkParticles" type="GPUParticles3D" parent="."]
-emitting = false
-amount = 5
-explosiveness = 1.0
-randomness = 0.55
-collision_base_size = 0.5
-trail_enabled = true
-trail_lifetime = 1.0
-process_material = SubResource("ParticleProcessMaterial_fs30h")
-draw_pass_1 = SubResource("RibbonTrailMesh_2iqyb")
 
 [node name="DeathParticles" type="GPUParticles3D" parent="."]
 emitting = false
@@ -453,8 +393,5 @@ collision_mask = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_j4515")
 
-[connection signal="area_entered" from="MobDetector" to="." method="_on_mob_detector_area_entered"]
-[connection signal="area_exited" from="MobDetector" to="." method="_on_mob_detector_area_exited"]
-[connection signal="area_shape_entered" from="MobDetector" to="." method="_on_mob_detector_area_shape_entered"]
 [connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

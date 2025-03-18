@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cuo47hb4ghj16"]
 
-[ext_resource type="Script" path="res://torch.gd" id="1_51r5s"]
+[ext_resource type="Script" uid="uid://34fq5tj3rw7q" path="res://torch.gd" id="1_51r5s"]
 [ext_resource type="PackedScene" uid="uid://djs1ilwmehh7w" path="res://torch_particles.tscn" id="2_nhb7g"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ws4uh"]
