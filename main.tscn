@@ -1,19 +1,23 @@
-[gd_scene load_steps=33 format=3 uid="uid://d0nates4jdfv0"]
+[gd_scene load_steps=37 format=3 uid="uid://d0nates4jdfv0"]
 
 [ext_resource type="Script" uid="uid://ckrd04b8reh1d" path="res://main.gd" id="1_umwv5"]
 [ext_resource type="PackedScene" uid="uid://bekk4p3ych8kn" path="res://mob.tscn" id="2_dduab"]
 [ext_resource type="Script" uid="uid://btnx1a8jle7e3" path="res://ground.gd" id="3_3ildu"]
+[ext_resource type="PackedScene" uid="uid://b14molv2nlyn" path="res://height_count.tscn" id="3_cegan"]
 [ext_resource type="FontFile" uid="uid://c37xmbkgeafb3" path="res://FIGHTT3_.ttf" id="4_2ui0q"]
 [ext_resource type="Texture2D" uid="uid://d2h6406qfkef6" path="res://vector-checker-pattern-black-white-2202943413.jpg" id="4_074og"]
 [ext_resource type="Script" uid="uid://cb1s34kfskvqu" path="res://score_label.gd" id="5_y1vou"]
 [ext_resource type="Shader" uid="uid://cjr50u5scjkk0" path="res://postprocess_outline.gdshader" id="6_4wjwq"]
 [ext_resource type="Script" uid="uid://dhmt21rram7jc" path="res://combo_label.gd" id="6_ovsdx"]
+[ext_resource type="Material" path="res://art/body.material" id="7_82xsv"]
 [ext_resource type="LabelSettings" uid="uid://djm4g4p8bcdth" path="res://striveoutlinesmall.tres" id="8_074og"]
+[ext_resource type="Material" path="res://art/eye.material" id="8_getpj"]
 [ext_resource type="Script" uid="uid://o8f3mynfe7o1" path="res://audio_stream_player_3d.gd" id="8_hr2f2"]
-[ext_resource type="FontFile" uid="uid://pgs7pq8fybjl" path="res://fonts/Impact - Strive.otf" id="10_074og"]
-[ext_resource type="Script" uid="uid://1ykfqf7ma2g4" path="res://height_label.gd" id="10_hcdup"]
+[ext_resource type="PackedScene" uid="uid://i1o08exv3eij" path="res://block.tscn" id="9_getpj"]
 [ext_resource type="AudioStream" uid="uid://bxhvnwv2o3e53" path="res://art/special_trick.wav" id="11_2uh7t"]
+[ext_resource type="FontFile" uid="uid://cljr8da6yl025" path="res://fonts/Owners.ttf" id="11_yaehf"]
 [ext_resource type="Script" uid="uid://jogiuxcb8kap" path="res://progress_bar.gd" id="12_hxfaf"]
+[ext_resource type="Script" uid="uid://bla36nbrredjo" path="res://height_label_temp.gd" id="13_074og"]
 [ext_resource type="PackedScene" uid="uid://c31c4jpianrwe" path="res://player.tscn" id="13_f0js0"]
 [ext_resource type="Script" uid="uid://1juyk6h0pc4q" path="res://jump_camera.gd" id="14_vnjr1"]
 [ext_resource type="Shader" uid="uid://d1usemq5hmwf1" path="res://jump_camera.gdshader" id="15_2asur"]
@@ -23,13 +27,13 @@ margin = 0.0
 size = Vector3(30, 2, 30)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nxjah"]
-lightmap_size_hint = Vector2i(604, 326)
+lightmap_size_hint = Vector2i(304, 176)
 size = Vector3(30, 2, 30)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uunw4"]
 albedo_texture = ExtResource("4_074og")
 albedo_texture_force_srgb = true
-uv1_scale = Vector3(1.5, 1, 1)
+uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_f7ae2"]
 _data = {
@@ -67,12 +71,11 @@ material = SubResource("StandardMaterial3D_ab8ks")
 default_font = ExtResource("4_2ui0q")
 default_font_size = 22
 
-[sub_resource type="LabelSettings" id="LabelSettings_82xsv"]
-font = ExtResource("10_074og")
-font_size = 620
-font_color = Color(1, 1, 1, 0.305882)
-shadow_size = 81
-shadow_color = Color(0, 0, 0, 0.337255)
+[sub_resource type="LabelSettings" id="LabelSettings_074og"]
+font = ExtResource("11_yaehf")
+font_size = 32
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xvij5"]
 shader = ExtResource("15_2asur")
@@ -137,6 +140,12 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("13_f0js0")]
 
+[node name="HeightCount" parent="Player" instance=ExtResource("3_cegan")]
+
+[node name="Sphere_001" parent="Player/Pivot/Character" index="0"]
+surface_material_override/1 = ExtResource("7_82xsv")
+surface_material_override/2 = ExtResource("8_getpj")
+
 [node name="CameraPivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
 
@@ -189,13 +198,14 @@ theme = SubResource("Theme_8atg6")
 [node name="ScoreLabel" type="Label" parent="UserInterface"]
 z_index = -161
 layout_mode = 0
-offset_left = 27.0
-offset_top = 19.0
-offset_right = 264.0
-offset_bottom = 100.0
+offset_left = 871.0
+offset_top = 22.0
+offset_right = 1874.0
+offset_bottom = 103.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Score: 0"
 label_settings = ExtResource("8_074og")
+horizontal_alignment = 2
 script = ExtResource("5_y1vou")
 
 [node name="ComboLabel" type="Label" parent="UserInterface"]
@@ -204,32 +214,25 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -100.0
-offset_top = 22.0
-offset_right = -38.0
-offset_bottom = 52.0
+offset_left = -1893.0
+offset_top = 19.0
+offset_right = -1538.0
+offset_bottom = 156.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Combo: 0
-Best: 0"
+text = "Combo: 0"
 label_settings = ExtResource("8_074og")
 script = ExtResource("6_ovsdx")
 
-[node name="HeightLabel" type="Label" parent="UserInterface"]
-visible = false
-z_index = -120
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+[node name="HeightLabelTemp" type="Label" parent="UserInterface"]
+z_index = -1
+layout_mode = 0
+offset_right = 25.0
+offset_bottom = 32.0
+scale = Vector2(2.5, 2.5)
 text = "0"
-label_settings = SubResource("LabelSettings_82xsv")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("10_hcdup")
+label_settings = SubResource("LabelSettings_074og")
+script = ExtResource("13_074og")
 
 [node name="Retry" type="ColorRect" parent="UserInterface"]
 z_index = -55
@@ -239,7 +242,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.588235)
+color = Color(0, 0, 0, 0)
 
 [node name="Label" type="Label" parent="UserInterface/Retry"]
 z_index = -1
@@ -310,14 +313,19 @@ script = ExtResource("14_vnjr1")
 visible = false
 mesh = SubResource("QuadMesh_ysfas")
 
+[node name="Block" parent="." instance=ExtResource("9_getpj")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 8.35585, 6.56355, 0)
+
 [connection signal="combo" from="Player" to="." method="_on_player_combo"]
 [connection signal="combo" from="Player" to="UserInterface/ComboLabel" method="_on_player_combo"]
 [connection signal="height" from="Player" to="." method="_on_player_height"]
 [connection signal="height" from="Player" to="CameraPivot/Camera3D" method="_on_player_height"]
 [connection signal="height" from="Player" to="UserInterface/ScoreLabel" method="_on_player_height"]
-[connection signal="height" from="Player" to="UserInterface/HeightLabel" method="_on_player_height"]
+[connection signal="height" from="Player" to="UserInterface/HeightLabelTemp" method="_on_player_height"]
 [connection signal="height" from="Player" to="UserInterface/ProgressBar" method="_on_player_height"]
 [connection signal="height" from="Player" to="JumpCamera" method="_on_player_height"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="stunt" from="Player" to="AudioStreamPlayer3D" method="_on_player_stunt"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+
+[editable path="Player"]

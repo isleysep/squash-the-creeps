@@ -9,14 +9,14 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpf0j"]
 resource_name = "mob_eye"
 cull_mode = 2
-albedo_color = Color(0.804757, 0.025213, 0.112394, 1)
+albedo_color = Color(0.98, 0.3234, 0.400003, 1)
 roughness = 0.5
 emission_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5nov"]
 resource_name = "mob_body"
 cull_mode = 2
-albedo_color = Color(0.0447845, 0.14901, 0.351575, 1)
+albedo_color = Color(0.2812, 0.35302, 0.76, 1)
 roughness = 0.5
 emission_enabled = true
 

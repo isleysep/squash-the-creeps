@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://djm4g4p8bcdth"]
 
-[ext_resource type="FontFile" uid="uid://pgs7pq8fybjl" path="res://fonts/Impact - Strive.otf" id="1_lhn8g"]
+[ext_resource type="FontFile" uid="uid://cljr8da6yl025" path="res://fonts/Owners.ttf" id="1_lhn8g"]
 
 [resource]
 font = ExtResource("1_lhn8g")

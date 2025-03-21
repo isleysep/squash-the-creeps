@@ -145,9 +145,8 @@ angle_max = 720.0
 direction = Vector3(0, 0, 4.495)
 spread = 11.947
 flatness = 0.585
-initial_velocity_min = 4.13
-initial_velocity_max = 11.12
-gravity = Vector3(0, -37.71, 0)
+initial_velocity_max = 6.99
+gravity = Vector3(0, 0, 0)
 scale_min = 0.8
 scale_max = 1.2
 scale_curve = SubResource("CurveTexture_mi583")
@@ -156,11 +155,11 @@ color_ramp = ExtResource("3_8sgk5")
 emission_curve = SubResource("CurveTexture_xemvc")
 hue_variation_min = -0.01
 hue_variation_max = 0.02
+turbulence_enabled = true
 collision_mode = 1
 collision_friction = 0.77
 collision_bounce = 1.0
 collision_use_scale = true
-sub_emitter_keep_velocity = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vgdgd"]
 vertex_color_use_as_albedo = true

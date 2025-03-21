@@ -2,15 +2,16 @@ extends Node
 
 @export var mob_scene: PackedScene
 @export var combo: int
+@onready var hc = $Player/HeightCount
 var score = 0
 var best_combo = 0
 var last_height = 0.0
 
-signal silhouette_rot(num)
 
 
 func _ready():
 	$UserInterface/Retry.hide()
+	$UserInterface/Retry.color = Color(0.0, 0.0, 0.0, 0)
 
 func _on_mob_timer_timeout():
 	# Create a new instance of the Mob scene.
@@ -36,6 +37,8 @@ func _on_mob_timer_timeout():
 func _on_player_hit() -> void:
 	$MobTimer.stop()
 	$UserInterface/Retry.show()
+	var tween = create_tween()
+	tween.tween_property($UserInterface/Retry, "color", Color(0.0, 0.0, 0.0, 0.588), 0.5)
 	await Leaderboards.post_guest_score("squashcreep-high-score-czUM", best_combo, "test")
 
 func _unhandled_input(event):
@@ -53,32 +56,52 @@ func _on_score_label_score_count(num: Variant) -> void:
 
 
 func _on_player_height(num: Variant) -> void:
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN)
+	var slowed = false
+	if hc:
+		hc.on_score(int(num))
 	#$Silhouette/Pivot/Character.position.y = num
 	#if last_height - num < 0.1 and PhaseTrack.get_phase() == 2:
 		#if $Player/Pivot/Character.rotation.z - $Silhouette/Pivot/Character.rotation.z < 0.1:
 			#$AudioStreamPlayer3D.play()
+	#if last_height - num < 5 and PhaseTrack.get_phase() == 2 and not slowed:
+		#slowed = true
+		#Engine.set_time_scale(0.5)
+		#print("slowed")
+		#await get_tree().create_timer(0.25).timeout
+		#print("unslowed")
+		#Engine.set_time_scale(1)
 	if 30.0 > num or last_height > num + 0.5 or $Player/AnimationPlayer.current_animation == "twirl":
-		# letterbox out
-		tween.tween_method(camera_fade, $SubViewportContainer.material.get_shader_parameter("squishedness"), 0, 0.25)
-		$UserInterface/HeightLabel.visible = false
-		$UserInterface/ScoreLabel.visible = true
-		$UserInterface/ComboLabel.visible = true
-		$CameraPivot/Camera3D.current = true
-		#$Silhouette.visible = false
-		PhaseTrack.set_phase(1)
+		if PhaseTrack.get_phase() == 2:
+			# letterbox out
+			var tween = create_tween()
+			tween.set_ease(Tween.EASE_OUT)
+			tween.set_trans(Tween.TRANS_QUART)
+			tween.tween_method(camera_fade, $SubViewportContainer.material.get_shader_parameter("squishedness"), 0, 0.25)
+			#score_pos.emit($CameraPivot/Camera3D.unproject_position($Player/Pivot/Character/HeightLabel.position))
+			$UserInterface/ScoreLabel.visible = true
+			$UserInterface/ComboLabel.visible = true
+			$CameraPivot/Camera3D.current = true
+			#$Silhouette.visible = false
+			
+			#$Player/Pivot/HeightLabel.visible = false
+			#$UserInterface/HeightLabelTemp.visible = true
+			PhaseTrack.set_phase(1)
+			slowed = false
 	else:
-		# letterbox in
-		tween.tween_method(camera_fade, $SubViewportContainer.material.get_shader_parameter("squishedness"), 0.25, 0.25)
-		#$Silhouette.visible = true
-		$JumpCamera.current = true
-		# if entering phase 2, set random rotation for silhouette
 		if PhaseTrack.get_phase() == 1:
-			$UserInterface/HeightLabel.visible = true
-			$UserInterface/ScoreLabel.visible = false
-			$UserInterface/ComboLabel.visible = false
-		PhaseTrack.set_phase(2)
+			# letterbox in
+			var tween = create_tween()
+			tween.set_ease(Tween.EASE_OUT)
+			tween.set_trans(Tween.TRANS_QUART)
+			tween.tween_method(camera_fade, $SubViewportContainer.material.get_shader_parameter("squishedness"), 0.25, 0.25)
+			#$Silhouette.visible = true
+			$JumpCamera.current = true
+			# if entering phase 2, set random rotation for silhouette
+			if PhaseTrack.get_phase() == 1:
+				#$Player/Pivot/HeightLabel.visible = true
+				$UserInterface/ScoreLabel.visible = false
+				$UserInterface/ComboLabel.visible = false
+			PhaseTrack.set_phase(2)
 	last_height = num
 
 func camera_fade(num: float):

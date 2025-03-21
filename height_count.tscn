@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b14molv2nlyn"]
+
+[ext_resource type="Script" uid="uid://blggy5i261u6h" path="res://height_count.gd" id="1_v8edx"]
+[ext_resource type="PackedScene" uid="uid://i1o08exv3eij" path="res://block.tscn" id="2_rxbod"]
+
+[node name="HeightCount" type="Node3D"]
+script = ExtResource("1_v8edx")
+
+[node name="Digit1" parent="." instance=ExtResource("2_rxbod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Digit2" parent="." instance=ExtResource("2_rxbod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="Digit3" parent="." instance=ExtResource("2_rxbod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+visible = false
+
+[node name="Digit4" parent="." instance=ExtResource("2_rxbod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+visible = false
+
+[node name="Digit5" parent="." instance=ExtResource("2_rxbod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+visible = false

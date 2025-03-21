@@ -5,6 +5,7 @@ signal combo(num)
 signal twirl(yes)
 signal stunt
 signal height(num)
+signal horizont(num)
 
 # How fast the player moves in meters per second.
 @export var speed = 14
@@ -20,7 +21,7 @@ signal height(num)
 var combo_count = 0
 var airborne = false
 var target_velocity = Vector3.ZERO
-var twirl_available = true
+var twirl_available = false
 var twirl_counter = 0
 var phase_two = false
 
@@ -30,7 +31,6 @@ func _physics_process(delta):
 	
 	pick_color()
 
-	
 	# We check for each move input and update the direction accordingly.
 	if Input.is_action_pressed("move_right"):
 		direction.x += Input.get_action_strength("move_right")
@@ -185,7 +185,7 @@ func _physics_process(delta):
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
-	if velocity.length() > 20:
+	if PhaseTrack.get_phase() == 2 and velocity.length() > 30:
 		$Pivot/Character/FastTrailParticles.emitting = true
 	else:
 		$Pivot/Character/FastTrailParticles.emitting = false
@@ -193,6 +193,8 @@ func _physics_process(delta):
 		$Pivot/Character/FastTrailParticles.emitting = true
 	$Pivot.rotation.x = PI / 6 * clamp(velocity.y, -50, 50) / jump_impulse
 	height.emit(position.y)
+	if position.x < -10 or position.x > 10:
+		horizont.emit(position.x)
 
 func pick_color():
 	#if combo_count > 1:
@@ -204,10 +206,15 @@ func pick_color():
 		#$Pivot/Character/FastTrailParticles.process_material.set("color", chosen_color)
 		#return
 	var material = $Pivot/Character/FastTrailParticles.process_material
+	var amount = $Pivot/Character/FastTrailParticles.amount
 	var red = Color(0.9017, 0.3173, 0.2187, 0.851)
+	var red_amt = 20
 	var orange = Color(0.8117, 0.4153, 0.2306, 0.851)
+	var orange_amt = 40
 	var yellow = Color(0.7559, 0.4633, 0.1603, 0.851)
+	var yellow_amt = 60
 	var blue = Color(0.4164, 0.5444, 0.76, 0.851)
+	var blue_amt = 80
 	var purp = Color("fb67a2")
 	if $AnimationPlayer.current_animation == "twirl":
 		material.set("color", purp)
@@ -222,12 +229,16 @@ func pick_color():
 
 	# Interpolate between colors based on speed
 	var chosen_color = blue
+	var chosen_amt = 40
 	if t < .33:
 		chosen_color = red.lerp(orange, t/.33)
+		chosen_amt = lerp(red_amt, orange_amt, t/.33)
 	if t >= .33 and t < .66:
 		chosen_color = orange.lerp(yellow, (t-.33)/.33)
+		chosen_amt = lerp(orange_amt, yellow_amt, (t-.33)/.33)
 	if t >= .66 and t < 1:
 		chosen_color = yellow.lerp(blue, (t-.66)/.33)
+		chosen_amt = lerp(yellow_amt, blue_amt, (t-.66)/.33)
 	
 	
 	#chosen_color = chosen_color.lerp(orange, t * 0.8)
@@ -235,6 +246,7 @@ func pick_color():
 
 	# Apply color to particle material
 	material.set("color", chosen_color)
+	amount = chosen_amt
 
 func die():
 	if ComboCount.get_combo() > 0:
