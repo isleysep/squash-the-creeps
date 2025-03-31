@@ -6,7 +6,7 @@ const int NUM_DIGITS = 10; // Total digits in the texture
 
 void fragment() {
     vec2 uv = UV;
-    uv.x = (uv.x / float(NUM_DIGITS)) + (float(digit) / float(NUM_DIGITS)); 
+    uv.x = (uv.x / float(NUM_DIGITS)) + (float(digit) / float(NUM_DIGITS));
     vec4 tex_color = texture(number_texture, uv);
     ALBEDO = tex_color.rgb;
 }

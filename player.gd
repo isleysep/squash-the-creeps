@@ -247,6 +247,7 @@ func pick_color():
 	# Apply color to particle material
 	material.set("color", chosen_color)
 	amount = chosen_amt
+	#material.set("amount", chosen_amt)
 
 func die():
 	if ComboCount.get_combo() > 0:

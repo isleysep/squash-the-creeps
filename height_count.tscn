@@ -1,25 +1,456 @@
-[gd_scene load_steps=3 format=3 uid="uid://b14molv2nlyn"]
+[gd_scene load_steps=48 format=3 uid="uid://b14molv2nlyn"]
 
 [ext_resource type="Script" uid="uid://blggy5i261u6h" path="res://height_count.gd" id="1_v8edx"]
-[ext_resource type="PackedScene" uid="uid://i1o08exv3eij" path="res://block.tscn" id="2_rxbod"]
+[ext_resource type="Script" uid="uid://cgluf3x540nop" path="res://block.gd" id="2_hyvjh"]
+[ext_resource type="Texture2D" uid="uid://cijkwuvjtig4f" path="res://art/Digits/widespritesheetnew.png" id="3_hyvjh"]
+
+[sub_resource type="Animation" id="Animation_esujq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Digit1/Top:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Digit1/Bottom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0gbf3"]
+resource_name = "rotate"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0), Vector3(3.14159, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hyvjh"]
+resource_name = "rotate_past"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1),
+"transitions": PackedFloat32Array(1, 0.517632, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.261799, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1),
+"transitions": PackedFloat32Array(1, 0.517632, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0), Vector3(1.8326, 0, 0), Vector3(1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Digit1/Top:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333237, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.5, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Digit1/Bottom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333237, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.5, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ftgly"]
+_data = {
+&"RESET": SubResource("Animation_esujq"),
+&"rotate": SubResource("Animation_0gbf3"),
+&"rotate_past": SubResource("Animation_hyvjh")
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rxbod"]
+load_path = "res://.godot/imported/widespritesheet.png-5297d61ce512de0d2d0f01f397061b73.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyvjh"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_rxbod")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+uv1_offset = Vector3(0.1, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v8edx"]
+material = SubResource("StandardMaterial3D_hyvjh")
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_esujq"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_hyvjh")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+uv1_offset = Vector3(0.1, 0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ftgly"]
+load_path = "res://.godot/imported/widespritesheet.png-5297d61ce512de0d2d0f01f397061b73.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xf1pw"]
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_ftgly")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fm8dc"]
+material = SubResource("StandardMaterial3D_xf1pw")
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eixr6"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_hyvjh")
+uv1_scale = Vector3(0.1, 1, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hyvjh"]
+load_path = "res://.godot/imported/widespritesheet.png-5297d61ce512de0d2d0f01f397061b73.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v8edx"]
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_hyvjh")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+uv1_offset = Vector3(0.1, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0gbf3"]
+material = SubResource("StandardMaterial3D_v8edx")
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gbf3"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_hyvjh")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+uv1_offset = Vector3(0.1, 0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_esujq"]
+load_path = "res://.godot/imported/widespritesheet.png-5297d61ce512de0d2d0f01f397061b73.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftgly"]
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_esujq")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xf1pw"]
+material = SubResource("StandardMaterial3D_ftgly")
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fm8dc"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_hyvjh")
+uv1_scale = Vector3(0.1, 1, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fm8dc"]
+load_path = "res://.godot/imported/widespritesheet.png-5297d61ce512de0d2d0f01f397061b73.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5f8ke"]
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_fm8dc")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+uv1_offset = Vector3(0.1, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eixr6"]
+material = SubResource("StandardMaterial3D_5f8ke")
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tiw1t"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_hyvjh")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+uv1_offset = Vector3(0.1, 0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tiw1t"]
+load_path = "res://.godot/imported/widespritesheet.png-5297d61ce512de0d2d0f01f397061b73.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unwbj"]
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_tiw1t")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5ws8e"]
+material = SubResource("StandardMaterial3D_unwbj")
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ws8e"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_hyvjh")
+uv1_scale = Vector3(0.1, 1, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l6t3b"]
+load_path = "res://.godot/imported/widespritesheet.png-5297d61ce512de0d2d0f01f397061b73.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jg3f4"]
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_l6t3b")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+uv1_offset = Vector3(0.1, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ianho"]
+material = SubResource("StandardMaterial3D_jg3f4")
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ianho"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_hyvjh")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+uv1_offset = Vector3(0.1, 0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ykybm"]
+load_path = "res://.godot/imported/widespritesheet.png-5297d61ce512de0d2d0f01f397061b73.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_546yr"]
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_ykybm")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_beg0g"]
+material = SubResource("StandardMaterial3D_546yr")
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_beg0g"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_hyvjh")
+uv1_scale = Vector3(0.1, 1, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bxx08"]
+load_path = "res://.godot/imported/widespritesheet.png-5297d61ce512de0d2d0f01f397061b73.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6uxvv"]
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_bxx08")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+uv1_offset = Vector3(0.1, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xophc"]
+material = SubResource("StandardMaterial3D_6uxvv")
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xophc"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_hyvjh")
+albedo_texture_force_srgb = true
+heightmap_scale = 10.77
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+uv1_scale = Vector3(0.1, 1, 1)
+uv1_offset = Vector3(0.1, 0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_exexj"]
+load_path = "res://.godot/imported/widespritesheet.png-5297d61ce512de0d2d0f01f397061b73.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eof7m"]
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_exexj")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x0237"]
+material = SubResource("StandardMaterial3D_eof7m")
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0237"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_hyvjh")
+uv1_scale = Vector3(0.1, 1, 1)
 
 [node name="HeightCount" type="Node3D"]
 script = ExtResource("1_v8edx")
 
-[node name="Digit1" parent="." instance=ExtResource("2_rxbod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+[node name="Digit1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+script = ExtResource("2_hyvjh")
 
-[node name="Digit2" parent="." instance=ExtResource("2_rxbod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Digit1"]
+libraries = {
+&"": SubResource("AnimationLibrary_ftgly")
+}
 
-[node name="Digit3" parent="." instance=ExtResource("2_rxbod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-visible = false
+[node name="Top" type="MeshInstance3D" parent="Digit1"]
+mesh = SubResource("PlaneMesh_v8edx")
+skeleton = NodePath("../Bottom")
+surface_material_override/0 = SubResource("StandardMaterial3D_esujq")
 
-[node name="Digit4" parent="." instance=ExtResource("2_rxbod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
-visible = false
+[node name="Bottom" type="MeshInstance3D" parent="Digit1"]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, -1, 0, 1, -3.61999e-06, 0, 0, 0)
+mesh = SubResource("PlaneMesh_fm8dc")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_eixr6")
 
-[node name="Digit5" parent="." instance=ExtResource("2_rxbod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
-visible = false
+[node name="Digit2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+script = ExtResource("2_hyvjh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Digit2"]
+libraries = {
+&"": SubResource("AnimationLibrary_ftgly")
+}
+
+[node name="Top" type="MeshInstance3D" parent="Digit2"]
+mesh = SubResource("PlaneMesh_0gbf3")
+skeleton = NodePath("../Bottom")
+surface_material_override/0 = SubResource("StandardMaterial3D_0gbf3")
+
+[node name="Bottom" type="MeshInstance3D" parent="Digit2"]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, -1, 0, 1, -3.61999e-06, 0, 0, 0)
+mesh = SubResource("PlaneMesh_xf1pw")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_fm8dc")
+
+[node name="Digit3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+script = ExtResource("2_hyvjh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Digit3"]
+libraries = {
+&"": SubResource("AnimationLibrary_ftgly")
+}
+
+[node name="Top" type="MeshInstance3D" parent="Digit3"]
+mesh = SubResource("PlaneMesh_eixr6")
+skeleton = NodePath("../Bottom")
+surface_material_override/0 = SubResource("StandardMaterial3D_tiw1t")
+
+[node name="Bottom" type="MeshInstance3D" parent="Digit3"]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, -1, 0, 1, -3.61999e-06, 0, 0, 0)
+mesh = SubResource("PlaneMesh_5ws8e")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_5ws8e")
+
+[node name="Digit4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+script = ExtResource("2_hyvjh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Digit4"]
+libraries = {
+&"": SubResource("AnimationLibrary_ftgly")
+}
+
+[node name="Top" type="MeshInstance3D" parent="Digit4"]
+mesh = SubResource("PlaneMesh_ianho")
+skeleton = NodePath("../Bottom")
+surface_material_override/0 = SubResource("StandardMaterial3D_ianho")
+
+[node name="Bottom" type="MeshInstance3D" parent="Digit4"]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, -1, 0, 1, -3.61999e-06, 0, 0, 0)
+mesh = SubResource("PlaneMesh_beg0g")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_beg0g")
+
+[node name="Digit5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+script = ExtResource("2_hyvjh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Digit5"]
+libraries = {
+&"": SubResource("AnimationLibrary_ftgly")
+}
+
+[node name="Top" type="MeshInstance3D" parent="Digit5"]
+mesh = SubResource("PlaneMesh_xophc")
+skeleton = NodePath("../Bottom")
+surface_material_override/0 = SubResource("StandardMaterial3D_xophc")
+
+[node name="Bottom" type="MeshInstance3D" parent="Digit5"]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, -1, 0, 1, -3.61999e-06, 0, 0, 0)
+mesh = SubResource("PlaneMesh_x0237")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_x0237")

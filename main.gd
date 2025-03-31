@@ -56,7 +56,6 @@ func _on_score_label_score_count(num: Variant) -> void:
 
 
 func _on_player_height(num: Variant) -> void:
-	var slowed = false
 	if hc:
 		hc.on_score(int(num))
 	#$Silhouette/Pivot/Character.position.y = num
@@ -86,7 +85,8 @@ func _on_player_height(num: Variant) -> void:
 			#$Player/Pivot/HeightLabel.visible = false
 			#$UserInterface/HeightLabelTemp.visible = true
 			PhaseTrack.set_phase(1)
-			slowed = false
+			hc.visible = false
+			hc.reset()
 	else:
 		if PhaseTrack.get_phase() == 1:
 			# letterbox in
@@ -102,6 +102,8 @@ func _on_player_height(num: Variant) -> void:
 				$UserInterface/ScoreLabel.visible = false
 				$UserInterface/ComboLabel.visible = false
 			PhaseTrack.set_phase(2)
+			hc.visible = true
+			hc.wake()
 	last_height = num
 
 func camera_fade(num: float):
