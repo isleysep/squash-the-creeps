@@ -5,6 +5,7 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture;
 uniform float outline_width = 2.0;
 uniform vec3 color = vec3(0.983, 0.405, 0.636);
+uniform float clip_height : hint_range(-10.0, 10.0);
 
 void vertex() {
     // Expand vertices outward to create an outline effect

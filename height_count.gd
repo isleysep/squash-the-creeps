@@ -15,8 +15,8 @@ func on_score(num: int):
 		if i < num_digits:
 			blocks[i].visible = true
 			blocks[i].change_digit(int(num_str[num_digits - 1 - i]), num)  # Reverse order for places
-			if i == 2:
-				print("digit 3: %s digit 2: %s" % [num_str[num_digits - 1 - i],num_str[num_digits - 1 - 1]])
+			#if i == 2:
+				#print("digit 3: %s digit 2: %s" % [num_str[num_digits - 1 - i],num_str[num_digits - 1 - 1]])
 		else:
 			blocks[i].visible = false  # Hide unused digits
 

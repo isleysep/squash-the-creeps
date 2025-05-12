@@ -24,8 +24,11 @@ var target_velocity = Vector3.ZERO
 var twirl_available = false
 var twirl_counter = 0
 var phase_two = false
+var dead = false
 
 func _physics_process(delta):
+	if dead:
+		return
 	# We create a local variable to store the input direction.
 	var direction = Vector3.ZERO
 	
@@ -250,6 +253,7 @@ func pick_color():
 	#material.set("amount", chosen_amt)
 
 func die():
+	dead = true
 	if ComboCount.get_combo() > 0:
 		$DeathParticles.amount = 30 * ComboCount.get_combo()
 	$DeathParticles.emitting = true

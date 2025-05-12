@@ -14,4 +14,4 @@ func _on_player_height(num: Variant) -> void:
 		visible = false
 	elif num < best_height:
 		value = (num/best_height)*100
-		visible = true
+		visible = false

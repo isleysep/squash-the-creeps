@@ -7,6 +7,7 @@ render_priority = 0
 shader = ExtResource("1_wfs6g")
 shader_parameter/outline_width = 2.0
 shader_parameter/color = Vector3(0, 0, 0)
+shader_parameter/clip_height = 4.75e-07
 
 [resource]
 render_priority = 3

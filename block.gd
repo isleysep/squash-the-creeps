@@ -28,7 +28,7 @@ func change_digit(new_digit: int, current_score: int):
 	last_score = current_score
 	last_update_time = current_time
 	
-	print(score_change_rate)
+	#print(score_change_rate)
 	# Normalize the speed factor (higher rate = faster animation)
 	var speed_factor = clamp(score_change_rate / 50.0, 1.0, 10.0)  # Tune divisor (50.0) for balance
 	if last_score < 40:
@@ -40,6 +40,7 @@ func change_digit(new_digit: int, current_score: int):
 	
 	bot_digit = new_digit
 	await anim.animation_finished  # Wait for animation to complete
+	if PhaseTrack.get_phase() == 2: DopamineTickerSound.play_sound()
 	bottom.uv1_offset = Vector3(new_digit * 0.1, 1.0, 0)
 	top.uv1_offset = Vector3(((new_digit + 1) % 10) * 0.1, 1.0, 0)
 	anim.play("rotate_past")
