@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dptdn386sm7xf"]
+
+[ext_resource type="AudioStream" uid="uid://dhrrbr20o8twn" path="res://art/zaytoven-ahh.mp3" id="1_xlkoi"]
+
+[node name="AhhPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_xlkoi")

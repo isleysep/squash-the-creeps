@@ -1,0 +1,68 @@
+[gd_scene load_steps=14 format=3 uid="uid://c1v2fs7epy4cs"]
+
+[ext_resource type="Script" uid="uid://b010jm0pl3yji" path="res://queue.gd" id="1_v6k7x"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a6plk"]
+load_path = "res://.godot/imported/generic_button_circle_outline.png-7cc1241ef4421d5db792c443203f359c.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5g5s"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_a6plk")
+albedo_texture_msdf = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_l0x8q"]
+material = SubResource("StandardMaterial3D_m5g5s")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q3e48"]
+load_path = "res://.godot/imported/generic_button_circle_outline.png-7cc1241ef4421d5db792c443203f359c.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jc55t"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_q3e48")
+albedo_texture_msdf = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_ouefs"]
+material = SubResource("StandardMaterial3D_jc55t")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_opkpk"]
+load_path = "res://.godot/imported/generic_button_circle_outline.png-7cc1241ef4421d5db792c443203f359c.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ar5q6"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_opkpk")
+albedo_texture_msdf = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_vr3l2"]
+material = SubResource("StandardMaterial3D_ar5q6")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b6s66"]
+load_path = "res://.godot/imported/generic_button_circle_outline.png-7cc1241ef4421d5db792c443203f359c.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a08hv"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_b6s66")
+albedo_texture_msdf = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_0t1aq"]
+material = SubResource("StandardMaterial3D_a08hv")
+
+[node name="Queue" type="Node2D"]
+script = ExtResource("1_v6k7x")
+
+[node name="Face" type="Node2D" parent="."]
+
+[node name="Top" type="MeshInstance3D" parent="Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("QuadMesh_l0x8q")
+
+[node name="Right" type="MeshInstance3D" parent="Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
+mesh = SubResource("QuadMesh_ouefs")
+
+[node name="Bottom" type="MeshInstance3D" parent="Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+mesh = SubResource("QuadMesh_vr3l2")
+
+[node name="Left" type="MeshInstance3D" parent="Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0)
+mesh = SubResource("QuadMesh_0t1aq")

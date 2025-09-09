@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c48a7qnoryfar"
+path="res://.godot/imported/schnozz glitches - sine shit.wav-ce20ab4188fd96b2797d1820e5ae8629.sample"
+
+[deps]
+
+source_file="res://art/glitch stuff/schnozz glitches - sine shit.wav"
+dest_files=["res://.godot/imported/schnozz glitches - sine shit.wav-ce20ab4188fd96b2797d1820e5ae8629.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

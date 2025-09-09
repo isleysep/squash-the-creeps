@@ -1,8 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2687obw1mdyd"]
 
-[ext_resource type="AudioStream" uid="uid://b7cd5ygya8g78" path="res://art/multhit1.ogg" id="1_eua7h"]
+[ext_resource type="AudioStream" uid="uid://ds0mfnok2dmxr" path="res://art/jazz_drum_kit/JK_SNR_03.wav" id="1_iowje"]
 [ext_resource type="Script" uid="uid://bnspugk046ojv" path="res://dopamine_ticker_sound.gd" id="2_iowje"]
 
 [node name="DopamineTickerSound" type="AudioStreamPlayer"]
-stream = ExtResource("1_eua7h")
+stream = ExtResource("1_iowje")
+max_polyphony = 10
 script = ExtResource("2_iowje")

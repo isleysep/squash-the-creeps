@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bc8bcyw3xwp8f"
+path="res://.godot/imported/schnozz glitches - grarrrrt.wav-7347df1f0878c678375f17b90fadfa9c.sample"
+
+[deps]
+
+source_file="res://art/glitch stuff/schnozz glitches - grarrrrt.wav"
+dest_files=["res://.godot/imported/schnozz glitches - grarrrrt.wav-7347df1f0878c678375f17b90fadfa9c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

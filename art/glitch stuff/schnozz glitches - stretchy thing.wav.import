@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2502a71dewt5"
+path="res://.godot/imported/schnozz glitches - stretchy thing.wav-0f3984994cd110107cc87dc5e4bc0982.sample"
+
+[deps]
+
+source_file="res://art/glitch stuff/schnozz glitches - stretchy thing.wav"
+dest_files=["res://.godot/imported/schnozz glitches - stretchy thing.wav-0f3984994cd110107cc87dc5e4bc0982.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
