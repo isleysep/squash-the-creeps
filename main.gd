@@ -69,11 +69,8 @@ func _on_player_height(num: Variant) -> void:
 		#await get_tree().create_timer(0.25).timeout
 		#print("unslowed")
 		#Engine.set_time_scale(1)
-	#if 30.0 > num and PhaseTrack.get_phase() == 1:
-		#DopamineTickerSound.reset_pitch()
 	if 30.0 > num or last_height > num + 0.5 or $Player/AnimationPlayer.current_animation == "twirl":
 		if PhaseTrack.get_phase() == 2:
-			$"/root/DopamineTickerSound".stop_sound()
 			# letterbox out
 			var tween = create_tween()
 			tween.set_ease(Tween.EASE_OUT)
@@ -92,7 +89,6 @@ func _on_player_height(num: Variant) -> void:
 			hc.reset()
 	else:
 		if PhaseTrack.get_phase() == 1:
-			$"/root/DopamineTickerSound".play_sound()
 			# letterbox in
 			var tween = create_tween()
 			tween.set_ease(Tween.EASE_OUT)

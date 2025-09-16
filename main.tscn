@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://d0nates4jdfv0"]
+[gd_scene load_steps=48 format=4 uid="uid://d0nates4jdfv0"]
 
 [ext_resource type="Script" uid="uid://ckrd04b8reh1d" path="res://main.gd" id="1_umwv5"]
 [ext_resource type="PackedScene" uid="uid://bekk4p3ych8kn" path="res://mob.tscn" id="2_dduab"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://dptdn386sm7xf" path="res://ahh_player.tscn" id="9_82xsv"]
 [ext_resource type="Script" uid="uid://4w35gosfyg46" path="res://ahh_player.gd" id="10_getpj"]
 [ext_resource type="AudioStream" uid="uid://bxhvnwv2o3e53" path="res://art/special_trick.wav" id="11_2uh7t"]
-[ext_resource type="PackedScene" uid="uid://b2687obw1mdyd" path="res://dopamine_ticker_sound.tscn" id="11_getpj"]
 [ext_resource type="Script" uid="uid://jogiuxcb8kap" path="res://progress_bar.gd" id="12_hxfaf"]
 [ext_resource type="PackedScene" uid="uid://c31c4jpianrwe" path="res://player.tscn" id="13_f0js0"]
 [ext_resource type="Script" uid="uid://1juyk6h0pc4q" path="res://jump_camera.gd" id="14_vnjr1"]
@@ -300,8 +299,6 @@ script = ExtResource("7_yaehf")
 [node name="AhhPlayer" parent="Player" instance=ExtResource("9_82xsv")]
 script = ExtResource("10_getpj")
 
-[node name="DopamineTickerSound" parent="Player" instance=ExtResource("11_getpj")]
-
 [node name="CameraPivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
 
@@ -442,8 +439,6 @@ material = SubResource("ShaderMaterial_xvij5")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 960.0
-offset_right = 960.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -467,7 +462,6 @@ mesh = SubResource("QuadMesh_ysfas")
 [connection signal="height" from="Player" to="." method="_on_player_height"]
 [connection signal="height" from="Player" to="Player/Silhouette" method="_on_player_height"]
 [connection signal="height" from="Player" to="Player/AhhPlayer" method="_on_player_height"]
-[connection signal="height" from="Player" to="Player/DopamineTickerSound" method="_on_player_height"]
 [connection signal="height" from="Player" to="CameraPivot/Camera3D" method="_on_player_height"]
 [connection signal="height" from="Player" to="UserInterface/ScoreLabel" method="_on_player_height"]
 [connection signal="height" from="Player" to="UserInterface/ProgressBar" method="_on_player_height"]

@@ -11,5 +11,4 @@ func _on_player_height(num: Variant) -> void:
 		if num > height + 1:
 			height = num
 		elif !ahhed:
-			$"/root/DopamineTickerSound".play_fill()
 			ahhed = true
